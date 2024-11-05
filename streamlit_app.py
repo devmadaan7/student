@@ -58,6 +58,16 @@ for index, task in st.session_state.tasks.iterrows():
     )
     st.session_state.tasks.at[index, "Completed"] = completed
 
+# Task completion summary
+st.subheader("Task Completion Summary")
+total_tasks = len(st.session_state.tasks)
+completed_tasks = st.session_state.tasks["Completed"].sum()
+incomplete_tasks = total_tasks - completed_tasks
+
+st.write(f"**Total Tasks:** {total_tasks}")
+st.write(f"**Completed Tasks:** {completed_tasks}")
+st.write(f"**Incomplete Tasks:** {incomplete_tasks}")
+
 # Daily summary: Important tasks missed today
 st.subheader("Daily Summary")
 today = date.today()
