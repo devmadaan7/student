@@ -29,3 +29,4 @@ if "tasks" in st.session_state:
     st.subheader("Scheduled Tasks")
     st.dataframe(st.session_state.tasks)
 
+df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
