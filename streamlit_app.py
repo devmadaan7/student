@@ -28,7 +28,20 @@ if st.sidebar.button("Add Task"):
 if "tasks" in st.session_state:
     st.subheader("Scheduled Tasks")
     st.dataframe(st.session_state.tasks)
-    
-df = pd.DataFrame(columns=['column1', 'column2', 'column3'])
-df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
+# Function to save tasks to a CSV
+def save_tasks():
+    st.session_state.tasks.to_csv("tasks.csv", index=False)
+
+# Load tasks from CSV if the file exists
+try:
+    st.session_state.tasks = pd.read_csv("tasks.csv")
+except FileNotFoundError:
+    st.session_state.tasks = pd.DataFrame(columns=["Task Name", "Date", "Time", "Priority"])
+
+# Add a "Save" button
+if st.sidebar.button("Save Tasks"):
+    save_tasks()
+    st.success("Tasks saved to file!")
+
 
