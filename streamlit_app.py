@@ -28,6 +28,7 @@ if st.sidebar.button("Add Task"):
 if "tasks" in st.session_state:
     st.subheader("Scheduled Tasks")
     st.dataframe(st.session_state.tasks)
-
-df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+    
 df = pd.DataFrame(columns=['column1', 'column2', 'column3'])
+df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
